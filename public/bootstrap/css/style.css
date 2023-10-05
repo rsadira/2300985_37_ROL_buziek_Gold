@@ -1,0 +1,150 @@
+
+/* Customize your hero section styling here */
+
+body {
+  /* background-image: url("https://images.unsplash.com/photo-1567787609897-efa3625dd22d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"); */
+  background-color: rgb(0, 0, 0);
+  /* background-blend-mode: multiply; */
+}
+
+/* NAVBAR */
+.navbar{
+  background-color: #e23c13da;
+}
+
+.sticky-top {
+  z-index: 1000; /* Adjust this value as needed */
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: white;
+}
+
+.join-link{
+  text-align: center;
+  width: 55px;
+  border: 3px solid rgb(247, 90, 11);
+  border-radius: 5px;
+}
+
+/* HERO SECION */
+.hero {
+  background-image: url('https://images.unsplash.com/photo-1551710029-607e06bd45ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80');
+  background-size: cover;
+  background-position: center;
+  background-color: grey;
+  background-blend-mode: multiply;
+  color: #fff;
+  text-align: center;
+  padding: 100px 0;
+}
+
+.hero h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.btn-book,
+.btn-learn-more {
+  font-size: 18px;
+  padding: 10px 20px;
+  margin: 10px;
+}
+
+.btn-book {
+  background-color: #ff5722;
+  /* Orange color */
+  border: none;
+  color: #fff;
+}
+
+.btn-learn-more {
+  background-color: #4f4e4e;
+  border: none;
+  color: #fff;
+}
+
+.btn-book:hover,
+.btn-learn-more:hover {
+  opacity: 0.8;
+}
+
+.modal-header{
+  background-color: #ff5722;
+}
+
+/* ABOUT US */
+.about-us{
+  background-color: #3180bd;
+}
+
+.about-img{
+  border: 5px solid rgb(255, 85, 0);
+}
+
+/* HOW IT WORKS */
+.how-it-works {
+  background-color: #f7f7f7;
+  padding: 40px 0;
+}
+
+.step {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.step img {
+  max-width: 30%;
+}
+
+.step h3 {
+  margin-top: 10px;
+  font-size: 1.5rem;
+}
+
+.step p {
+  font-size: 1rem;
+}
+
+/* BOOKING PAGE */
+.tagline {
+  background-image: url('https://images.unsplash.com/photo-1518972559570-7cc1309f3229?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+  background-size: cover;
+  background-color: grey;
+  background-blend-mode: multiply;
+  background-position: center;
+  color: #e2e3e7; /* Text color on the background */
+  padding: 100px 0; /* Adjust as needed */
+}
+
+.available-studios{
+  color: white;
+  background-color:rgba(255, 255, 255, 0.396);
+  background-blend-mode: multiply;
+}
+
+.studio-card {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  color: #ccc;
+}
+
+.booking-studio-img{
+  width: 300px;
+  align-items: center;
+}
+
+.booking-book-now-btn{
+  background-color: green;
+  border: none;
+}
+
+.booking-book-now-btn:hover{
+ background-color: rgba(0, 93, 0, 0.708);
+}

@@ -4,33 +4,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buziek - Book Your Studio Now</title>
+    <title>Buziek | Book Your Studio Now!</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
-    <link rel="stylesheet" href="bootstrap/css/reset.css">
-    <link rel="stylesheet" href="bootstrap/css/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/bootstrap/css/style.css">
 </head>
 
 <body>
-    <section class="bg-img">
-        <header class="header-main">
-            <nav>
-                <a href="home.ejs"><img class="buziek-logo" src="/images/logo.png" alt="logo of buziek"></a>
-                <div class="nav-links">
-                    <ul>
-                        <li class="book-nav" style="float:center"><a href="">BOOK NOW</a>
-                        <li class="faq-nav" style="float:center"><a href="">FAQ</a>
-                        <li class="about-nav" style="float:center"><a href="">ABOUT US</a>
-                        <li class="login-nav" style="float:right"><a href="">LOGIN</a>
-                        <li class="join-nav" style="float:right"><a href="">JOIN</a>
-                    </ul>
+    <!-- Navbar -->
+    <%- include('partials/navbar') %>
+        <hr class="mt-1">
+        <!-- Hero Section -->
+        <section class="hero mt-4">
+            <div class="container">
+                <h1>Hassle free studio bookings!</h1>
+                <p>Book your favorite studios with Buziek.</p>
+                <a href="book" class="btn btn-book">Book Now</a>
+                <a href="#" class="btn btn-learn-more">Learn More</a>
+            </div>
+        </section>
+        <hr class="mt-4">
+        <!-- About Us Section -->
+        <section class="about-us" id="about-us-section">
+            <div class="container pt-5 pb-5">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>About Us</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ultricies orci nec quam semper
+                            fermentum. Fusce ultrices lacinia augue, non euismod dolor laoreet nec.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+                            alt="About Us Image" class="img-fluid about-img">
+                    </div>
                 </div>
-            </nav>
-        </header>
-    </section>
+            </div>
+        </section>
+        <hr class="mt-4">
+        <!-- How It Works Section -->
+        <section class="how-it-works mt-4">
+            <div class="container">
+                <h2>How It Works</h2>
+                <hr class="mt-4">
+                <div class="row">
+                    <!-- Step 1 -->
+                    <div class="col-md-4">
+                        <div class="step">
+                            <img src="/images/studio-icon.png" alt="Step 1 Image" class="img-fluid">
+                            <h3>Step 1</h3>
+                            <p>Choose your preferred studio location.</p>
+                        </div>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="col-md-4">
+                        <div class="step">
+                            <img src="/images/calendar-icon.png" alt="Step 2 Image" class="img-fluid">
+                            <h3>Step 2</h3>
+                            <p>Select your date and time.</p>
+                        </div>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="col-md-4">
+                        <div class="step">
+                            <img src="/images/confirmation-icon.png" alt="Step 3 Image" class="img-fluid">
+                            <h3>Step 3</h3>
+                            <p>Confirm your booking and enjoy your session!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr class="mt-4">
+        <!-- Footer Section -->
+        <%- include('partials/footer') %>
 
+            <!-- Bootstrap JavaScript (Optional) -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Booking Page</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/bootstrap/css/style.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <%- include('partials/navbar') %>
+
+        <!-- Studio Photo Carousel -->
+        <div class="studio-carousel">
+            <!-- Add your carousel here (e.g., using Bootstrap's Carousel component) -->
+        </div>
+
+        <!-- Studio Details Section -->
+        <section class="studio-details">
+            <div class="container">
+                <h1>Studio Name</h1>
+                <p>Address: Studio Address</p>
+                <p>Price per Hour: $50</p>
+
+                <!-- Description Section -->
+                <div class="description">
+                    <h2>Description</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                </div>
+
+                <!-- Facilities Section -->
+                <div class="facilities">
+                    <h2>Facilities</h2>
+                    <ul>
+                        <li>Facility 1</li>
+                        <li>Facility 2</li>
+                        <li>Facility 3</li>
+                        <!-- Add more facilities as needed -->
+                    </ul>
+                </div>
+
+                <!-- Pricing Details Section -->
+                <div class="pricing-details">
+                    <h2>Pricing Details</h2>
+                    <!-- Add pricing information here -->
+                </div>
+
+                <!-- Availability Section -->
+                <div class="availability">
+                    <h2>Availability</h2>
+                    <!-- Add availability information here -->
+                    <a href="#" class="btn btn-primary">Book Now</a> <!-- Add a book now button -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer (You can include your footer here) -->
+        <%- include('partials/footer') %>
+
+            <!-- Bootstrap JavaScript (Optional) -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
