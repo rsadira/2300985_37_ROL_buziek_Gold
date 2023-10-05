@@ -8,6 +8,17 @@ body {
 }
 
 /* NAVBAR */
+
+@media (max-width: 768px) {
+  .navbar-collapse {
+      text-align: center;
+  }
+  .navbar-nav {
+      display: inline-block;
+      text-align: left;
+  }
+}
+
 .navbar{
   background-color: #e23c13da;
 }
@@ -147,4 +158,20 @@ body {
 
 .booking-book-now-btn:hover{
  background-color: rgba(0, 93, 0, 0.708);
+}
+
+/* Studio Details Container */
+
+.studio-details{
+  color: black;
+}
+
+#studioCarousel{
+  border: black;
+  border-width: 10px;
+}
+
+#bookNowBtn{
+  background-color: green;
+  border: none;
 }
