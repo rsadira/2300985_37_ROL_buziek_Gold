@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+</head>
+
+<body>
+    <h1>Booking Invoice</h1>
+    <h2>Booking Details:</h2>
+    <p><strong>Name:</strong> John Doe</p>
+    <p><strong>Email:</strong> johndoe@example.com</p>
+    <p><strong>Phone:</strong> +1 (123) 456-7890</p>
+    <p><strong>Price:</strong> $100</p>
+
+    <h2>Booking Summary:</h2>
+    <p><strong>Date:</strong> January 1, 2023</p>
+    <p><strong>Start Time:</strong> 10:00 AM</p>
+    <p><strong>End Time:</strong> 12:00 PM</p>
+
+    <button onclick="printInvoice()">Print Invoice</button>
+
+    <script>
+        // JavaScript function to print the invoice
+        function printInvoice() {
+            window.print();
+        }
+    </script>
+</body>
+
+</html>

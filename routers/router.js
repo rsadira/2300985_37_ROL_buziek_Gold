@@ -1,17 +1,13 @@
 const express = require("express");
-const home = require("./home");
-const about = require("./about");
-const booking = require("./booking");
-const userLogin = require("./user");
-const studioDetail = require("./studio.detail");
+const homeRouter = require("./home");
+const studioDetail = require("./studio-detail");
+const api = require("./api/api");
 
 const router = express.Router();
 
-router.use("/", home);
-router.use("/home", home);
-router.use("/", about);
-router.use("/", booking);
-router.use("/", userLogin);
+router.use("/", homeRouter);
+router.use("/home", homeRouter);
 router.use("/", studioDetail);
 
+router.use("/api", api);
 module.exports = router;

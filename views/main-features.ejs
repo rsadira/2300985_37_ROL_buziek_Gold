@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buziek | Book Your Studio Now!</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/bootstrap/css/style.css">
+</head>
+
+<body>
+    <%- include('partials/navbar') %>
+        <!-- Header -->
+        <header>
+            <h1>Explore Buziek Features</h1>
+        </header>
+
+        <!-- Features Sections -->
+        <section class="feature-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <i class="fa fa-search feature-icon" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <h2 class="feature-title">Discover Studios</h2>
+                        <p class="feature-description">
+                            Easily discover a wide range of studios suitable for your needs. Browse through our
+                            extensive collection of studios across various locations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Section 2 -->
+        <section class="feature-section bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2 class="feature-title">Book Conveniently</h2>
+                        <p class="feature-description">
+                            Book your preferred studio with just a few clicks. Our user-friendly booking system makes it
+                            easy to schedule your studio time.
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <i class="fa fa-calendar feature-icon" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Section 3 -->
+        <section class="feature-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <i class="fa fa-check-circle feature-icon" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <h2 class="feature-title">Secure and Reliable</h2>
+                        <p class="feature-description">
+                            Your bookings and payments are secure with us. We provide a reliable platform for all your
+                            studio booking needs.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer Section -->
+        <%- include('partials/footer') %>
+
+            <!-- Bootstrap JavaScript (Optional) -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

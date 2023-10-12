@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation</title>
+</head>
+
+<body>
+    <h1>Step 3: Confirmation</h1>
+    <form action="booking-invoice.ejs" method="POST">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="phone">Your Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+        <label for="price">Price:</label>
+        <input type="text" id="price" name="price" value="100" readonly>
+        <button type="submit">Book My Studio</button>
+    </form>
+</body>
+
+</html>

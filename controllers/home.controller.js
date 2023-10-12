@@ -1,6 +1,6 @@
 class HomeController {
-  async index(req, res) {
-    res.render("home");
+  async indexHome(req, res) {
+    res.render("home", { title: "Buziek | Book Your Studio Now!" });
   }
 }
 

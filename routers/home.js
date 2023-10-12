@@ -1,11 +1,13 @@
 const express = require("express");
-const home = express.Router();
+const homeRouter = express.Router();
 const HomeController = require("../controllers/home.controller");
+const StudioListController = require("../controllers/studio-list.controller");
 
 const homeController = new HomeController();
-home.get("/", homeController.index);
-// home.get("/2", (req, res) => {
-//   res.send("Hello 2");
-// });
+const studioListController = new StudioListController();
 
-module.exports = home;
+homeRouter.get("/", homeController.indexHome);
+
+homeRouter.get("/book", studioListController.studioList);
+
+module.exports = homeRouter;
