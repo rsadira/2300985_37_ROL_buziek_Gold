@@ -15,9 +15,18 @@ module.exports = (sequelize, DataTypes) => {
   }
   StudioImage.init(
     {
-      img_url_1: DataTypes.STRING,
-      img_url_2: DataTypes.STRING,
-      img_url_3: DataTypes.STRING,
+      img_url_1: {
+        type: DataTypes.STRING,
+        allowNull: true, // Set allowNull to true
+      },
+      img_url_2: {
+        type: DataTypes.STRING,
+        allowNull: true, // Set allowNull to true
+      },
+      img_url_3: {
+        type: DataTypes.STRING,
+        allowNull: true, // Set allowNull to true
+      },
       studio_id: DataTypes.INTEGER,
     },
     {

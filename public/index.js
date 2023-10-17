@@ -82,3 +82,34 @@ document
   });
 
 // ...
+
+$("registration-form").submit(function (event) {
+  event.preventDefault();
+
+  const email = $("#email_regist_modal").val();
+  const username = $("#username_regist_modal").val();
+  const password = $("#password_regist_modal").val();
+  const repassword = $("#repassword_regist_modal").val();
+  const selectedRole = $("#musicianRole_regist_modal").val();
+
+  if (password !== repassword) {
+    alert("Maaf konfirmasi password yang and masukan tidak sesuai");
+  } else {
+    // Kirim data registrasi ke server menggunakan AJAX atau fetch
+    $.ajax({
+      url: "/api/v1/users/register", // Ganti dengan rute API registrasi Anda
+      type: "POST",
+      contentType: "application/json",
+      data: JSON.stringify({ username, email, password, selectedRole }),
+      success: function (response) {
+        // Tampilkan pesan sukses atau redirect ke halaman login
+        alert("Registrasi berhasil! Silakan masuk.");
+        window.location.href = "/";
+      },
+      error: function (error) {
+        console.error("Terjadi kesalahan: " + JSON.stringify(error));
+        alert("Gagal mendaftar. Silakan coba lagi.");
+      },
+    });
+  }
+});

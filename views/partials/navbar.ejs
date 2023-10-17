@@ -11,7 +11,7 @@
                 <a class="nav-link" href="book">Book</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#about-us-section">About Us</a>
+                <a class="nav-link" href="home/#about-us-section">About Us</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">FAQ</a>
@@ -41,14 +41,16 @@
             </div>
             <div class="modal-body">
                 <!-- Add your login form here -->
-                <form>
+                <form id="login-form">
                     <div class="form-group">
                         <label for="username">Email/Username</label>
-                        <input type="text" class="form-control" id="username" placeholder="Enter your email/username">
+                        <input type="text" class="form-control" id="username_login_modal"
+                            placeholder="Enter your email/username">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                        <input type="password" class="form-control" id="password_login_modal"
+                            placeholder="Enter your password">
                     </div>
                     <button type="submit" class="btn btn-primary">Login</button>
                 </form>
@@ -70,29 +72,37 @@
             </div>
             <div class="modal-body">
                 <!-- Add form elements for registration -->
-                <form>
+                <form id="registration-form">
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter email">
+                        <input type="email" class="form-control" id="email_regist_modal" placeholder="Enter email">
                     </div>
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" placeholder="Enter username">
+                        <input type="text" class="form-control" id="username_regist_modal" placeholder="Enter username">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter password">
+                        <input type="password" class="form-control" id="password_regist_modal"
+                            placeholder="Enter password">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Re-Enter Your Password</label>
+                        <input type="password" class="form-control" id="repassword_regist_modal"
+                            placeholder="Enter password">
                     </div>
                     <!-- Add radio buttons or checkboxes for user and owner roles -->
                     <div class="form-group">
                         <label>Select Role</label>
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" id="userRole" name="role" value="user">
-                            <label class="form-check-label" for="userRole">User</label>
+                            <input type="radio" class="form-check-input" id="musicianRole_regist_modal" name="role"
+                                value="user">
+                            <label class="form-check-label" for="musicianRole">Musician</label>
                         </div>
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" id="ownerRole" name="role" value="owner">
-                            <label class="form-check-label" for="ownerRole">Owner</label>
+                            <input type="radio" class="form-check-input" id="studioOwnerRole_regist_modal" name="role"
+                                value="owner">
+                            <label class="form-check-label" for="studioOwnerRole">Studio Owner</label>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Join</button>

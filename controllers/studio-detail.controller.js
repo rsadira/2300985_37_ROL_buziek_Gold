@@ -11,7 +11,7 @@ class StudioDetailController {
       const studioImg = await StudioImage.findAll({
         where: { studio_id: studioId },
       });
-      console.log(studio.StudioImages[0].img_url_1);
+      // console.log(studio.StudioImages[0].img_url_1);
       res.render("studio-detail", { title: studio.studio_name, studio });
     } catch (error) {
       console.error(error);

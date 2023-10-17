@@ -7,6 +7,7 @@ const homeController = new HomeController();
 const studioListController = new StudioListController();
 
 homeRouter.get("/", homeController.indexHome);
+// homeRouter.get("/home", homeController.indexHome);
 
 homeRouter.get("/book", studioListController.studioList);
 
