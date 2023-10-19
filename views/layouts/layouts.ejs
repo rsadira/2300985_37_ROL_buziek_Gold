@@ -9,6 +9,8 @@
     </title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
     <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/bootstrap/css/style.css">
 </head>
@@ -20,6 +22,32 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="/js/index.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                flatpickr(".date-picker", {
+                    altInput: true,
+                    altFormat: "F j, Y",
+                    dateFormat: "Y-m-d",
+                    minDate: "today",
+                });
+                // // Function to update the step
+                // function updateStep(step) {
+                //     document.querySelector("#step").value = step;
+                // }
+
+                // // // Button click event listeners to update the step
+                // // document.querySelector("#step1Next").addEventListener("click", function () {
+                // //     updateStep(2);
+                // // });
+
+                // // document.querySelector("#step2Next").addEventListener("click", function () {
+                // //     updateStep(3);
+                // // });
+            });
+        </script>
+
 
 </body>
 

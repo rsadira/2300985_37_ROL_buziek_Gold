@@ -4,9 +4,25 @@ const bcrypt = require("bcrypt");
 
 // call model
 const { User } = require("../models");
+const { Op } = require("sequelize");
 
-const authenticate = (email, password, done) => {
-  User.findOne({ where: { email: email } }).then((userData) => {
+const authenticate = (username, password, done) => {
+  User.findOne({
+    where: {
+      [Op.or]: [
+        {
+          email: {
+            [Op.eq]: username,
+          },
+        },
+        {
+          username: {
+            [Op.eq]: username,
+          },
+        },
+      ],
+    },
+  }).then((userData) => {
     if (!userData) {
       return done(null, false, { message: "User tidak terdaftar!" });
     }
@@ -26,7 +42,7 @@ const authenticate = (email, password, done) => {
 passport.use(
   new LocalStrategy(
     {
-      usernameField: "email",
+      usernameField: "username",
       passwordField: "password",
     },
     authenticate
@@ -38,7 +54,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-  user.findByPk(id).then((user) => {
+  User.findByPk(id).then((user) => {
     done(null, user);
   });
 });

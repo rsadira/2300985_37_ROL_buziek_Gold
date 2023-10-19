@@ -11,6 +11,7 @@ class StudioListController {
         musicStudios,
         title: "Book your studios now!",
         layout: "layouts/layouts",
+        user: req.user,
       });
     } catch (error) {
       console.error("Error fetching music studios:", error);

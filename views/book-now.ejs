@@ -1,0 +1,37 @@
+<body>
+    <%- include('partials/navbar') %>
+        <div class="book-now">
+            <h1 class="text-left pl-4 pt-3 pb-3 bg-dark text-white">Book <%= studio.studio_name %>
+            </h1>
+            <hr class="4">
+            <form action="/booking">
+                <input type="hidden" id="step" name="step" value="1">
+
+                <!-- Step 1: Select Date -->
+                <section class="step-container">
+                    <h3>Select Date</h3>
+                    <label for="bookingDate">Select Date:</label>
+                    <input type="text" class="date-picker" name="bookingDate" required>
+                </section>
+                <hr class="4">
+                <section class="step-container">
+                    <h3>Select Start and End Time</h3>
+                    <div class="form-group">
+                        <label for="startTime">Start Time:</label>
+                        <input type="time" class="form-control" name="startTime" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="endTime">End Time:</label>
+                        <input type="time" class="form-control" name="endTime" required>
+                    </div>
+                </section>
+                <hr class="4">
+                <div class="text-center mt-3">
+                    <button class="btn btn-success" type="button" id="nextBook">Next</button>
+                </div>
+            </form>
+            <hr class="4">
+        </div>
+        <%- include('partials/footer') %>
+
+</body>

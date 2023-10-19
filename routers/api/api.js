@@ -1,13 +1,15 @@
 const express = require("express");
-const studioDetail = require("../studio-detail");
-const StudioDetailController = require("../../controllers/studio-detail.controller");
-const UserController = require("../../controllers/user.controller");
 const api = express.Router();
 
-const studioDetailController = new StudioDetailController();
+const UserController = require("../../controllers/user.controller");
+const BookingController = require("../../controllers/booking.controller");
+
 const userController = new UserController();
+const bookingController = new BookingController();
 
 // Endpoint User
 api.post("/v1/users/register", userController.register);
+
+api.post("/v1/bookings/create", bookingController.createBooking);
 
 module.exports = api;
