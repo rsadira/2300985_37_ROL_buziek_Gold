@@ -20,8 +20,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       user_id: DataTypes.INTEGER,
       studio_id: DataTypes.INTEGER,
-      start_time: DataTypes.DATE,
-      end_time: DataTypes.DATE,
+      start_time: DataTypes.TIME,
+      end_time: DataTypes.TIME,
       booking_date: DataTypes.DATE,
       status: DataTypes.STRING,
     },

@@ -13,7 +13,6 @@ class StudioService {
   }
   async getStudioById(studioId) {
     try {
-      // Use the Sequelize model to find the studio by its ID
       const studio = await MusicStudio.findByPk(studioId, {
         include: {
           model: StudioImage,

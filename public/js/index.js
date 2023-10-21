@@ -1,24 +1,3 @@
-// script.js
-
-// Sample studio data (replace with your actual data)
-const studios = [
-  {
-    name: "Studio 1",
-    location: "Location A",
-    price: 50,
-    rating: 4,
-    facilities: ["Lighting", "Backdrops"],
-  },
-  {
-    name: "Studio 2",
-    location: "Location B",
-    price: 60,
-    rating: 4.5,
-    facilities: ["Lighting", "Soundproofing"],
-  },
-  // Add more studio data as needed
-];
-
 // Function to update studio listings based on user selections
 // function updateStudioListings() {
 //   const sortOption = document.getElementById("sort").value;
@@ -115,30 +94,77 @@ $("#registration-form").submit(function (event) {
   }
 });
 
-$("#booking-form").on("submit", function (event) {
-  event.preventDefault(); // Prevent the default form submission
+// $("#booking-form").on("submit", function (event) {
+//   event.preventDefault(); // Prevent the default form submission
 
-  // Serialize the form data to a JSON object
-  var formData = {};
-  $(this)
-    .serializeArray()
-    .forEach(function (item) {
-      formData[item.name] = item.value;
-    });
+//   // Serialize the form data to a JSON object
+//   var formData = {};
+//   $(this)
+//     .serializeArray()
+//     .forEach(function (item) {
+//       formData[item.name] = item.value;
+//     });
 
-  // Send the data to the server using Ajax
+//   // Send the data to the server using Ajax
+//   $.ajax({
+//     url: "/v1/bookings/create", // The API endpoint for creating bookings
+//     type: "POST",
+//     contentType: "application/json",
+//     data: JSON.stringify(formData),
+//     success: function (response) {
+//       // Handle the success response here (e.g., show a confirmation message)
+//       console.log("Booking data sent successfully:", response);
+//     },
+//     error: function (error) {
+//       // Handle errors (e.g., show an error message)
+//       console.error("Error sending booking data:", error);
+//     },
+//   });
+// });
+
+function cancelBooking(id) {
   $.ajax({
-    url: "/v1/bookings/create", // The API endpoint for creating bookings
-    type: "POST",
-    contentType: "application/json",
-    data: JSON.stringify(formData),
+    url: "/api/v1/bookings/cancel/" + id,
+    type: "DELETE",
     success: function (response) {
-      // Handle the success response here (e.g., show a confirmation message)
-      console.log("Booking data sent successfully:", response);
+      // Tindakan setelah berhasil membatalkan booking
+      alert("Booking successfully canceled.");
+
+      // Hapus baris booking dari tabel
+      window.location.reload = "/booking-history";
     },
     error: function (error) {
-      // Handle errors (e.g., show an error message)
-      console.error("Error sending booking data:", error);
+      console.error("An error occurred while canceling the booking:", error);
+      alert("Failed to cancel the booking.");
+    },
+  });
+}
+
+$("#bookNow").submit(function (event) {
+  event.preventDefault();
+
+  const selectedDate = dateInput.value;
+  const startTime = startTimeInput.value;
+  const endTime = endTimeInput.value;
+  const studioId = $("#studioId").val();
+
+  const requestData = {
+    selectedDate,
+    startTime,
+    endTime,
+    studioId,
+  };
+
+  $.ajax({
+    type: "POST",
+    url: "/api/v1/bookings/new",
+    data: requestData, // Pass the requestData object
+    success: function (response) {
+      console.log("Booking finalized and added to history!");
+      window.location.href = "/";
+    },
+    error: function (error) {
+      console.error("Error finalizing booking:", error);
     },
   });
 });

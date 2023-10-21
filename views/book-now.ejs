@@ -4,10 +4,7 @@
             <h1 class="text-left pl-4 pt-3 pb-3 bg-dark text-white">Book <%= studio.studio_name %>
             </h1>
             <hr class="4">
-            <form action="/booking">
-                <input type="hidden" id="step" name="step" value="1">
-
-                <!-- Step 1: Select Date -->
+            <form id="bookNow"> <!-- Add action and method attributes -->
                 <section class="step-container">
                     <h3>Select Date</h3>
                     <label for="bookingDate">Select Date:</label>
@@ -16,6 +13,7 @@
                 <hr class="4">
                 <section class="step-container">
                     <h3>Select Start and End Time</h3>
+                    <input type="hidden" value="<%= studio.id %>" name="studioId" id="studioId">
                     <div class="form-group">
                         <label for="startTime">Start Time:</label>
                         <input type="time" class="form-control" name="startTime" required>
@@ -27,11 +25,10 @@
                 </section>
                 <hr class="4">
                 <div class="text-center mt-3">
-                    <button class="btn btn-success" type="button" id="nextBook">Next</button>
+                    <button class="btn btn-success" type="submit">Book Now</button> <!-- Changed type to submit -->
                 </div>
             </form>
             <hr class="4">
         </div>
         <%- include('partials/footer') %>
-
 </body>

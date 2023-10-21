@@ -4,7 +4,7 @@ class BookingService {
   async createBooking(userId, studioId, selectedDate, startTime, endTime) {
     try {
       // Fetch the studio's hourly rate from the database
-      const studio = await MusicStudio.findByPk(studioId);
+      const studio = await MusicStudio.findByPk(+studioId);
 
       if (!studio) {
         throw new Error("Studio not found");
@@ -27,11 +27,11 @@ class BookingService {
 
       // Create the booking and include the calculated total price
       const booking = await Bookings.create({
-        userId,
-        studioId,
-        selectedDate,
-        startTime,
-        endTime,
+        user_id: userId,
+        studio_id: studioId,
+        booking_date: selectedDate,
+        start_time: startTime,
+        end_time: endTime,
         duration: durationHours, // Include duration in hours
         totalPrice, // Include the calculated total price
       });
@@ -47,7 +47,6 @@ class BookingService {
       const booking = await Bookings.findByPk(bookingId);
 
       if (!booking) {
-        // Handle the case where the booking doesn't exist
         return null;
       }
 
@@ -57,34 +56,31 @@ class BookingService {
     }
   }
 
-  async updateBooking(bookingId, updatedData) {
-    try {
-      const booking = await Bookings.findByPk(bookingId);
+  // async updateBooking(bookingId, updatedData) {
+  //   try {
+  //     const booking = await Bookings.findByPk(bookingId);
 
-      if (!booking) {
-        // Handle the case where the booking doesn't exist
-        return false;
-      }
+  //     if (!booking) {
+  //       // Handle the case where the booking doesn't exist
+  //       return false;
+  //     }
 
-      // Update the booking with the provided data
-      await booking.update(updatedData);
+  //     // Update the booking with the provided data
+  //     await booking.update(updatedData);
 
-      return true;
-    } catch (error) {
-      throw error;
-    }
-  }
+  //     return true;
+  //   } catch (error) {
+  //     throw error;
+  //   }
+  // }
 
   async cancelBooking(bookingId) {
     try {
-      const booking = await Bookings.findByPk(bookingId);
+      const booking = await Bookings.findByPk(+bookingId);
 
       if (!booking) {
-        // Handle the case where the booking doesn't exist
-        return false;
+        return null;
       }
-
-      // Delete the booking from the database
       await booking.destroy();
 
       return true;
@@ -93,7 +89,18 @@ class BookingService {
     }
   }
 
-  // Add other booking-related methods as needed
+  async getBookingHistory(userId) {
+    try {
+      const bookingHistory = await Bookings.findAll({
+        where: { user_id: userId },
+        include: [MusicStudio],
+        order: [["booking_date", "DESC"]],
+      });
+      return bookingHistory;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 module.exports = BookingService;

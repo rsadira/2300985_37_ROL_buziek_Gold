@@ -1,0 +1,62 @@
+<%- include('partials/navbar') %>
+    <div class="container bg-white">
+        <div class="row">
+            <div class="col-md-12">
+                <section>
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Studio Name</th>
+                                <th>Booking Date</th>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                                <th>Total Price</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (bookingHistory.length===0) { %>
+                                <tr>
+                                    <td colspan="6">No active bookings found.</td>
+                                </tr>
+                                <% } else { %>
+                                    <% for (let i=0; i < bookingHistory.length; i++) { %>
+                                        <tr>
+                                            <td>
+                                                <%= bookingHistory[i].MusicStudio.studio_name %>
+                                            </td>
+                                            <td>
+                                                <%= bookingHistory[i].booking_date %>
+                                            </td>
+                                            <td>
+                                                <%= bookingHistory[i].start_time %>
+                                            </td>
+                                            <td>
+                                                <%= bookingHistory[i].end_time %>
+                                            </td>
+                                            <td>
+                                                <%= bookingHistory[i].totalPrice %>
+                                            </td>
+                                            <td>
+                                                <%= bookingHistory[i].status %>
+                                            </td>
+                                            <td>
+
+                                                <button class="btn btn-danger" id="cancel-booking"
+                                                    data-booking-id="<%= bookingHistory[i].id %>"
+                                                    onclick="cancelBooking(`<%= bookingHistory[i].id %>`)">Cancel
+                                                    Booking</button>
+
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                            <% } %>
+
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
+
+    </div>
+    <%- include('partials/footer') %>
