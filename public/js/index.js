@@ -161,10 +161,94 @@ $("#bookNow").submit(function (event) {
     data: requestData, // Pass the requestData object
     success: function (response) {
       console.log("Booking finalized and added to history!");
-      window.location.href = "/";
+      window.location.href = "/booking-history";
     },
     error: function (error) {
       console.error("Error finalizing booking:", error);
+    },
+  });
+});
+
+$("#create-studio").submit(function (event) {
+  event.preventDefault();
+
+  const studioData = {
+    studio_name: $("#studio_name").val(),
+    location: $("#location").val(),
+    equipment_available: $("#equipment_available").val(),
+    hourly_rate: $("#hourly_rate").val(),
+    description: $("#description").val(),
+    coverImage: $("#cover_image").val(),
+    img_url_1: $("#img_url_1").val(),
+    img_url_2: $("#img_url_2").val(),
+    img_url_3: $("#img_url_3").val(),
+  };
+
+  $.ajax({
+    type: "POST",
+    url: "/api/v1/create-studios",
+    data: studioData,
+    success: function (response) {
+      console.log("Studio created successfully!");
+      window.location.href = "/my-studios";
+    },
+    error: function (error) {
+      console.error("Error creating studio:", error);
+    },
+  });
+});
+
+// When the "Edit Studio" button is clicked
+$("button.edit-studio").on("click", function () {
+  // Get the studioId from the button or data attribute
+  const studioId = $(this).data("studio-id");
+
+  // Make an AJAX request to get the studio details by studioId
+  $.ajax({
+    type: "GET",
+    url: `/api/v1/studios/${studioId}`, // Replace with your actual endpoint
+    success: function (response) {
+      // Prepopulate the form with the studio details
+      $("#studio_name").val(response.studio_name);
+      $("#location").val(response.location);
+      // Other fields
+
+      // Assuming you have an "Update" button to submit changes
+      // Set the form action to include the studioId
+      $("#edit-studio-form").attr("action", `/api/v1/studios/${studioId}`);
+    },
+    error: function (error) {
+      console.error("Error getting studio details:", error);
+    },
+  });
+});
+
+$("#edit-studio").submit(function (event) {
+  event.preventDefault();
+
+  const studioId = "<%= studio.id %>";
+  const studioData = {
+    studio_name: $("#studio_name").val(),
+    location: $("#location").val(),
+    equipment_available: $("#equipment_available").val(),
+    hourly_rate: $("#hourly_rate").val(),
+    description: $("#description").val(),
+    img_url_1: $("#img_url_1").val(),
+    img_url_2: $("#img_url_2").val(),
+    img_url_3: $("#img_url_3").val(),
+  };
+
+  $.ajax({
+    type: "PUT",
+    url: "/api/v1/update-studio/" + studioId,
+    data: JSON.stringify(studioData),
+    contentType: "application/json",
+    success: function (response) {
+      console.log("Studio updated successfully!", response);
+      window.location.href = "/my-studios";
+    },
+    error: function (error) {
+      console.error("Error updating studio:", error);
     },
   });
 });

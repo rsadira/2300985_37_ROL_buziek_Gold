@@ -1,4 +1,5 @@
 <!-- Navbar -->
+
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <a class="navbar-brand" href="/home"><img src="/images/logo-black.png" alt="Logo" width="70"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -33,16 +34,24 @@
                             <%= user.username %>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/booking-history">
-                            My Bookings
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">
-                            Logout
-                        </a>
-                    </li>
+                    <% if (user.user_type==='Musician' ) { %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/booking-history">
+                                My Bookings
+                            </a>
+                        </li>
+                        <% } else if (user.user_type==='Studio Owner' ) { %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/my-studios">
+                                    My Studios
+                                </a>
+                            </li>
+                            <% } %>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/logout">
+                                        Logout
+                                    </a>
+                                </li>
                 </ul>
                 <% } %>
     </div>

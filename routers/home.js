@@ -8,8 +8,23 @@ const homeController = new HomeController();
 const studioListController = new StudioListController();
 
 homeRouter.get("/", homeController.indexHome);
-// homeRouter.get("/home", homeController.indexHome);
 
 homeRouter.get("/book", permissionMiddleware, studioListController.studioList);
+homeRouter.get(
+  "/my-studios",
+  permissionMiddleware,
+  studioListController.renderMyStudios
+);
+homeRouter.get(
+  "/create-studio",
+  permissionMiddleware,
+  studioListController.indexCreateStudio
+);
+
+homeRouter.get(
+  "/edit-studio/:studioId",
+  permissionMiddleware,
+  studioListController.renderEditStudio
+);
 
 module.exports = homeRouter;

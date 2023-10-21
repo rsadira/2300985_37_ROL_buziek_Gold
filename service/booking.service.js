@@ -56,24 +56,6 @@ class BookingService {
     }
   }
 
-  // async updateBooking(bookingId, updatedData) {
-  //   try {
-  //     const booking = await Bookings.findByPk(bookingId);
-
-  //     if (!booking) {
-  //       // Handle the case where the booking doesn't exist
-  //       return false;
-  //     }
-
-  //     // Update the booking with the provided data
-  //     await booking.update(updatedData);
-
-  //     return true;
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // }
-
   async cancelBooking(bookingId) {
     try {
       const booking = await Bookings.findByPk(+bookingId);

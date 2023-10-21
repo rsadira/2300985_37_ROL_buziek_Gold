@@ -1,0 +1,51 @@
+<%- include('partials/navbar') %>
+    <div class="container bg-white">
+        <div class="row">
+            <div class="col-md-12">
+                <section>
+
+                    <a class="btn btn-success mb-3 mt-3" href="/create-studio">Create New Studio</a>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Studio Name</th>
+                                <th>Location</th>
+                                <th>Hourly Rate</th>
+                                <th>Description</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (studios.length===0) { %>
+                                <tr>
+                                    <td colspan="5">You haven't added any studios yet.</td>
+                                </tr>
+                                <% } else { %>
+                                    <% studios.forEach(function(studio) { %>
+                                        <tr>
+                                            <td>
+                                                <%= studio.studio_name %>
+                                            </td>
+                                            <td>
+                                                <%= studio.location %>
+                                            </td>
+                                            <td>
+                                                <%= studio.hourly_rate %>
+                                            </td>
+                                            <td>
+                                                <%= studio.description %>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-primary" href="/edit-studio/<%= studio.id %>">Edit
+                                                    Studio</a>
+                                            </td>
+                                        </tr>
+                                        <% }); %>
+                                            <% } %>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
+    </div>
+    <%- include('partials/footer') %>
