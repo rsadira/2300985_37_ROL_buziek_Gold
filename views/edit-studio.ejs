@@ -2,9 +2,11 @@
     <div class="container bg-white">
         <div class="row">
             <div class="col-md-12">
-                <section>
+                <section style="margin: 20px 0;">
                     <h2>Edit Studio</h2>
                     <form id="edit-studio">
+                        <input type="hidden" value="<%= studio.id %>" name="studioId" id="studioId">
+
                         <div class="form-group">
                             <label for="studio_name">Studio Name</label>
                             <input type="text" class="form-control" id="studio_name" name="studio_name"

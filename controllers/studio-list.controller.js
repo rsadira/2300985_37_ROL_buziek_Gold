@@ -127,7 +127,6 @@ class StudioListController {
   }
   async updateStudio(req, res) {
     try {
-      // Extract studio data from the request
       const {
         studioId,
         studio_name,

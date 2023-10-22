@@ -10,11 +10,10 @@ const userController = new UserController();
 const bookingController = new BookingController();
 const studioListController = new StudioListController();
 
-// Endpoint User
 api.post("/v1/users/register", userController.register);
 
 api.post("/v1/bookings/new", bookingController.createBooking);
-api.put("/v1/update-studio/:studioId", studioListController.updateStudio);
+api.put("/v1/edit-studio/:studioId", studioListController.updateStudio);
 api.post("/v1/create-studios", studioListController.createStudio);
 api.delete("/v1/bookings/cancel/:bookingId", bookingController.cancelBooking);
 module.exports = api;
