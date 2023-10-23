@@ -1,0 +1,526 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 16.0
+-- Dumped by pg_dump version 16.0
+
+-- Started on 2023-10-23 18:23:56
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 868 (class 1247 OID 24723)
+-- Name: enum_Users_user_type; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE public."enum_Users_user_type" AS ENUM (
+    'Musician',
+    'Studio Owner'
+);
+
+
+ALTER TYPE public."enum_Users_user_type" OWNER TO postgres;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 221 (class 1259 OID 24654)
+-- Name: Bookings; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Bookings" (
+    id integer NOT NULL,
+    user_id integer,
+    studio_id integer,
+    start_time time without time zone,
+    end_time time without time zone,
+    booking_date timestamp with time zone,
+    status character varying(255),
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public."Bookings" OWNER TO postgres;
+
+--
+-- TOC entry 220 (class 1259 OID 24653)
+-- Name: Bookings_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Bookings_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Bookings_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 4838 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: Bookings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Bookings_id_seq" OWNED BY public."Bookings".id;
+
+
+--
+-- TOC entry 219 (class 1259 OID 24645)
+-- Name: MusicStudios; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."MusicStudios" (
+    id integer NOT NULL,
+    studio_name character varying(255),
+    location character varying(255),
+    equipment_available json,
+    hourly_rate numeric,
+    description text,
+    owner_user_id integer,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL,
+    image_url character varying(255)
+);
+
+
+ALTER TABLE public."MusicStudios" OWNER TO postgres;
+
+--
+-- TOC entry 218 (class 1259 OID 24644)
+-- Name: MusicStudios_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."MusicStudios_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."MusicStudios_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 4839 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: MusicStudios_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."MusicStudios_id_seq" OWNED BY public."MusicStudios".id;
+
+
+--
+-- TOC entry 223 (class 1259 OID 24661)
+-- Name: Payments; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Payments" (
+    id integer NOT NULL,
+    booking_id integer,
+    payment_amount numeric,
+    payment_date timestamp with time zone,
+    payment_status character varying(255),
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public."Payments" OWNER TO postgres;
+
+--
+-- TOC entry 222 (class 1259 OID 24660)
+-- Name: Payments_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Payments_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Payments_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 4840 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: Payments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Payments_id_seq" OWNED BY public."Payments".id;
+
+
+--
+-- TOC entry 215 (class 1259 OID 24630)
+-- Name: SequelizeMeta; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."SequelizeMeta" (
+    name character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public."SequelizeMeta" OWNER TO postgres;
+
+--
+-- TOC entry 225 (class 1259 OID 24697)
+-- Name: StudioImages; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."StudioImages" (
+    id integer NOT NULL,
+    img_url_1 character varying(255),
+    img_url_2 character varying(255),
+    img_url_3 character varying(255),
+    studio_id integer,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public."StudioImages" OWNER TO postgres;
+
+--
+-- TOC entry 224 (class 1259 OID 24696)
+-- Name: StudioImages_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."StudioImages_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."StudioImages_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 4841 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: StudioImages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."StudioImages_id_seq" OWNED BY public."StudioImages".id;
+
+
+--
+-- TOC entry 217 (class 1259 OID 24636)
+-- Name: Users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Users" (
+    id integer NOT NULL,
+    username character varying(255),
+    email character varying(255),
+    password character varying(255),
+    user_type public."enum_Users_user_type" NOT NULL,
+    contact_email character varying(255),
+    contact_phone character varying(255),
+    address character varying(255),
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public."Users" OWNER TO postgres;
+
+--
+-- TOC entry 216 (class 1259 OID 24635)
+-- Name: Users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Users_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Users_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 4842 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: Users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Users_id_seq" OWNED BY public."Users".id;
+
+
+--
+-- TOC entry 4663 (class 2604 OID 24657)
+-- Name: Bookings id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Bookings" ALTER COLUMN id SET DEFAULT nextval('public."Bookings_id_seq"'::regclass);
+
+
+--
+-- TOC entry 4662 (class 2604 OID 24648)
+-- Name: MusicStudios id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."MusicStudios" ALTER COLUMN id SET DEFAULT nextval('public."MusicStudios_id_seq"'::regclass);
+
+
+--
+-- TOC entry 4664 (class 2604 OID 24664)
+-- Name: Payments id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Payments" ALTER COLUMN id SET DEFAULT nextval('public."Payments_id_seq"'::regclass);
+
+
+--
+-- TOC entry 4665 (class 2604 OID 24700)
+-- Name: StudioImages id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."StudioImages" ALTER COLUMN id SET DEFAULT nextval('public."StudioImages_id_seq"'::regclass);
+
+
+--
+-- TOC entry 4661 (class 2604 OID 24639)
+-- Name: Users id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Users" ALTER COLUMN id SET DEFAULT nextval('public."Users_id_seq"'::regclass);
+
+
+--
+-- TOC entry 4828 (class 0 OID 24654)
+-- Dependencies: 221
+-- Data for Name: Bookings; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Bookings" (id, user_id, studio_id, start_time, end_time, booking_date, status, "createdAt", "updatedAt") FROM stdin;
+3	\N	\N	\N	\N	\N	\N	2023-10-21 08:01:47.434+07	2023-10-21 08:01:47.434+07
+5	5	5	12:00:00	13:00:00	2023-10-23 07:00:00+07	\N	2023-10-21 08:16:32.948+07	2023-10-21 08:16:32.948+07
+6	5	6	12:00:00	14:00:00	2023-10-23 07:00:00+07	\N	2023-10-21 09:01:59.034+07	2023-10-21 09:01:59.034+07
+\.
+
+
+--
+-- TOC entry 4826 (class 0 OID 24645)
+-- Dependencies: 219
+-- Data for Name: MusicStudios; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."MusicStudios" (id, studio_name, location, equipment_available, hourly_rate, description, owner_user_id, "createdAt", "updatedAt", image_url) FROM stdin;
+5	SoundWave Studios	Jl. Melody No. 123, Jakarta	["Microphones","Mixing Console","Drum Kit"]	150000	A professional recording studio in the heart of Jakarta.	1	2023-10-11 13:42:45.978+07	2023-10-11 13:42:45.978+07	https://images.unsplash.com/photo-1598653222000-6b7b7a552625?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80
+6	Rhythm Haven Recording	Jl. Beat Avenue 45, Surabaya	["Microphones","Synthesizers","Guitar Amps"]	200000	High-quality recording and mixing services in Surabaya.	2	2023-10-11 13:42:45.978+07	2023-10-11 13:42:45.978+07	 https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80
+7	SoundWave Studios	Jl. Melody No. 123, Jakarta	["Microphones","Mixing Console","Drum Kit"]	150000	A professional recording studio in the heart of Jakarta.	1	2023-10-12 21:44:18.899+07	2023-10-12 21:44:18.899+07	https://images.unsplash.com/photo-1598653222000-6b7b7a552625?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80
+8	Rhythm Haven Recording	Jl. Beat Avenue 45, Surabaya	["Microphones","Synthesizers","Guitar Amps"]	200000	High-quality recording and mixing services in Surabaya.	2	2023-10-12 21:44:18.899+07	2023-10-12 21:44:18.899+07	 https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80
+9	Tes Studio 3	Jl. Pasir Kaliki 23, Bandung 	["Microphones","Synthesizers","Guitar Amps"]	350000	High-quality recording and mixing services in Bandung.	3	2023-10-12 21:44:18.899+07	2023-10-12 21:44:18.899+07	 https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80
+10	\N	JL. Buatan	\N	\N	Ini studio buatan	\N	2023-10-21 17:00:06.027+07	2023-10-21 17:00:06.027+07	\N
+11	\N	JL. Buatan	\N	\N	Ini studio buatan	\N	2023-10-21 17:00:25.188+07	2023-10-21 17:00:25.188+07	\N
+12	\N	JL. Buatan	\N	\N	ini studio buatan	\N	2023-10-21 17:05:24.003+07	2023-10-21 17:05:24.003+07	\N
+13	\N	JL. Buatan 3	\N	\N	33	\N	2023-10-21 17:12:17.324+07	2023-10-21 17:12:17.324+07	https://images.unsplash.com/photo-1636226570637-3fbda7ca09dc?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+14	123	1	"1"	1	1	7	2023-10-21 17:46:32.564+07	2023-10-22 17:26:30.858+07	https://images.unsplash.com/photo-1636226570637-3fbda7ca09dc?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+15	Gandul Studio	Cinere	"Ampli udah kena banjir"	123	Studio yang nyaman dan terjangkau di daerah Depok	7	2023-10-22 17:31:17.876+07	2023-10-22 17:31:17.876+07	https://images.unsplash.com/photo-1504904126298-3fde501c9b31?auto=format&fit=crop&q=80&w=1770&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+\.
+
+
+--
+-- TOC entry 4830 (class 0 OID 24661)
+-- Dependencies: 223
+-- Data for Name: Payments; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Payments" (id, booking_id, payment_amount, payment_date, payment_status, "createdAt", "updatedAt") FROM stdin;
+\.
+
+
+--
+-- TOC entry 4822 (class 0 OID 24630)
+-- Dependencies: 215
+-- Data for Name: SequelizeMeta; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."SequelizeMeta" (name) FROM stdin;
+20231011053838-create-user.js
+20231011054205-create-music-studio.js
+20231011054801-create-booking.js
+20231011054810-create-payment.js
+20231011063600-add_image_url_to_musicstudio.js
+20231012124720-create-studio-image.js
+20231012131344-add-image-attributes-to-studio_image.js
+20231012132227-remove-studio_images.js
+20231012132655-create-studio-images.js
+20231012133505-add-image-urls-to-studio-images.js
+20231012134200-remove-studio-images.js
+20231012134535-remove-StudioImages.js
+20231012134925-create-studio-image.js
+20231015074404-update-user-type-enum.js
+20231015095328-update-img-urls-allow-null.js
+20231021011254-create-bookings.js
+\.
+
+
+--
+-- TOC entry 4832 (class 0 OID 24697)
+-- Dependencies: 225
+-- Data for Name: StudioImages; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."StudioImages" (id, img_url_1, img_url_2, img_url_3, studio_id, "createdAt", "updatedAt") FROM stdin;
+1	https://images.unsplash.com/photo-1598653222000-6b7b7a552625?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80	https://images.unsplash.com/photo-1598653222000-6b7b7a552625?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80	https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80	5	2023-10-12 21:44:18.909+07	2023-10-12 21:44:18.909+07
+2	 https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80	https://images.unsplash.com/photo-1626126525134-fbbc07afb32c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fG11c2ljJTIwc3R1ZGlvfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60	https://images.unsplash.com/photo-1504904126298-3fde501c9b31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80	6	2023-10-12 21:44:18.909+07	2023-10-12 21:44:18.909+07
+3	https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?auto=format&fit=crop&q=80&w=1770&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D	https://images.unsplash.com/photo-1525201548942-d8732f6617a0?auto=format&fit=crop&q=80&w=1770&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D	https://images.unsplash.com/photo-1583310960973-e22c44125ea5?auto=format&fit=crop&q=80&w=1772&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D	14	2023-10-21 17:46:32.571+07	2023-10-21 17:46:32.571+07
+4	https://images.unsplash.com/photo-1559732277-7453b141e3a1?auto=format&fit=crop&q=80&w=1770&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D	https://images.unsplash.com/photo-1512053459797-38c3a066cabd?auto=format&fit=crop&q=80&w=1770&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D	https://plus.unsplash.com/premium_photo-1669278646170-04eae88cb3e6?auto=format&fit=crop&q=80&w=1770&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D	15	2023-10-22 17:31:17.882+07	2023-10-22 17:31:17.882+07
+\.
+
+
+--
+-- TOC entry 4824 (class 0 OID 24636)
+-- Dependencies: 217
+-- Data for Name: Users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Users" (id, username, email, password, user_type, contact_email, contact_phone, address, "createdAt", "updatedAt") FROM stdin;
+3	john_doe	john@example.com	hashed_password	Studio Owner	john.doe@gmail.com	123-456-7890	123 Main Street	2023-10-11 13:42:45.967+07	2023-10-11 13:42:45.967+07
+4	john_doe	john@example.com	hashed_password	Studio Owner	john.doe@gmail.com	123-456-7890	123 Main Street	2023-10-12 21:44:18.89+07	2023-10-12 21:44:18.89+07
+5	rolland1	rolland@example.com	$2b$10$5EWZ07.iQw9VHqE6DyY22evFZgEA5.3kFLyp0c7TWy/WQR7whS9Ha	Musician	rolland@example.com	08512818218	\N	2023-10-15 16:48:16.123+07	2023-10-15 16:48:16.235+07
+6	tes1	tes1@tes1.com	$2b$10$q7U0vfVDnCJEpPJMW2n1h.QWWng/mIIYumSUc86RPURiati2rb5aO	Musician	\N	\N	\N	2023-10-18 07:53:25.077+07	2023-10-18 07:53:25.146+07
+7	owner1	owner1@owner.com	$2b$10$L/MJcTC6GYE2/ovm3QTQAukJi5TAbD3dYfLI49kIJZq.99yHIHSxS	Studio Owner	\N	\N	\N	2023-10-19 21:15:08.482+07	2023-10-19 21:15:08.552+07
+8	dell	dell@email.com	$2b$10$kL4ygJ/Thi0Kk7THg2sNxusnvbpvM3FRj4.p3Q8RHsRTIj5UioGxu	Musician	\N	\N	\N	2023-10-20 14:42:41.488+07	2023-10-20 14:42:41.552+07
+\.
+
+
+--
+-- TOC entry 4843 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: Bookings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Bookings_id_seq"', 7, true);
+
+
+--
+-- TOC entry 4844 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: MusicStudios_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."MusicStudios_id_seq"', 15, true);
+
+
+--
+-- TOC entry 4845 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: Payments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Payments_id_seq"', 1, false);
+
+
+--
+-- TOC entry 4846 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: StudioImages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."StudioImages_id_seq"', 4, true);
+
+
+--
+-- TOC entry 4847 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: Users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Users_id_seq"', 8, true);
+
+
+--
+-- TOC entry 4673 (class 2606 OID 24659)
+-- Name: Bookings Bookings_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Bookings"
+    ADD CONSTRAINT "Bookings_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4671 (class 2606 OID 24652)
+-- Name: MusicStudios MusicStudios_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."MusicStudios"
+    ADD CONSTRAINT "MusicStudios_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4675 (class 2606 OID 24668)
+-- Name: Payments Payments_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Payments"
+    ADD CONSTRAINT "Payments_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4667 (class 2606 OID 24634)
+-- Name: SequelizeMeta SequelizeMeta_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."SequelizeMeta"
+    ADD CONSTRAINT "SequelizeMeta_pkey" PRIMARY KEY (name);
+
+
+--
+-- TOC entry 4677 (class 2606 OID 24704)
+-- Name: StudioImages StudioImages_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."StudioImages"
+    ADD CONSTRAINT "StudioImages_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4669 (class 2606 OID 24643)
+-- Name: Users Users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Users"
+    ADD CONSTRAINT "Users_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4678 (class 2606 OID 24705)
+-- Name: StudioImages StudioImages_studio_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."StudioImages"
+    ADD CONSTRAINT "StudioImages_studio_id_fkey" FOREIGN KEY (studio_id) REFERENCES public."MusicStudios"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+-- Completed on 2023-10-23 18:23:56
+
+--
+-- PostgreSQL database dump complete
+--
+
